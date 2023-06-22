@@ -1,0 +1,3 @@
+[submodule "nftime_proto"]
+	path = nftime_proto
+	url = https://github.com/onceuponaprince/nftime_proto.git
