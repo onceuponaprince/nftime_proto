@@ -14,6 +14,9 @@ class Moment(models.Model):
     class Meta:
         ordering = ['-created_at']
 
+    def __str__(self):
+        return str(self.user)
+
 class MomentVote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='vote_set')
     moment = models.ForeignKey(Moment, on_delete=models.CASCADE, related_name='vote_set', default='')
@@ -21,3 +24,6 @@ class MomentVote(models.Model):
 
     class Meta:
         unique_together = ('user', 'moment')
+
+    def __str__(self):
+        return str(self.moment)
