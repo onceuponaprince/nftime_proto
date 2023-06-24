@@ -7,8 +7,7 @@ api_router.register(r'moment', views.MomentAPIView)
 api_router.register(r'moment_vote', views.MomentVoteAPIView)
 
 urlpatterns =[
-    path('', include(api_router.urls)),
-    path("", include('accounts.urls')),
-    path('', include('api.urls')),
-    path("", include('capsule.urls'))
+   
+ path('', include(api_router.urls)),
+   
 ]

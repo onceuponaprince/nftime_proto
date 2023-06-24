@@ -1,21 +1,21 @@
 
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .manager import UserManager
 
 # Create your models here.
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     profile_id = models.IntegerField(primary_key=True, unique=True)
-    username = models.CharField(max_length=255)
-    password = models.CharField(max_length=255, default="", null=False)
-    profile_img = models.ImageField(upload_to='profile_imgs')
+    username = models.CharField(max_length=255, blank=True)
+    password = models.CharField(max_length=255, default="", blank=True)
+    profile_img = models.ImageField(upload_to='profile_imgs', blank=True)
     bio = models.TextField(blank=True)
-    is_wallet_user = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    is_wallet_user = models.BooleanField(default=False,blank=True)
+    is_active = models.BooleanField(default=True,blank=True)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
-    accept_terms = models.BooleanField(default=False)
+    accept_terms = models.BooleanField(default=True)
 
     objects = UserManager()
     

@@ -12,10 +12,13 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
-
+from django_nextjs.render import render_nextjs_page_sync
 from .exceptions import CannotActionOtherUserInfoError
 
 MAX_PAGE_LENGTH = 10
+
+def index(request):
+    return render_nextjs_page_sync(request)
 
 # Create your views here.
 
@@ -23,7 +26,7 @@ class MomentAPIView(viewsets.ModelViewSet):
     queryset = Moment.objects.all()
     pages = 0
     serializer_class = MomentUserSerializer
-    permission_classes = [IsAuthenticated]
+    
 
     def get_queryset(self):
         queryset = Moment.objects.all()
